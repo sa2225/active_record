@@ -196,6 +196,8 @@ class account extends model {
         return $tableName;
     }
 }
+
+// Todos table model
 class todo extends model {
     public $id;
     public $owneremail;
@@ -204,10 +206,9 @@ class todo extends model {
     public $duedate;
     public $message;
     public $isdone;
-    public function __construct()
-    {
-        $this->tableName = 'todos';
-    
+    public static function getTablename(){
+        $tableName='todos';
+        return $tableName;
     }
 }
 // this would be the method to put in the index page for accounts
