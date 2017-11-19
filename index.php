@@ -109,9 +109,13 @@ class collection {
         return $recordsSet[0];
     }
 }
+
+// Collection for accounts table 
 class accounts extends collection {
     protected static $modelName = 'account';
 }
+
+// Collection for todos table
 class todos extends collection {
     protected static $modelName = 'todo';
 }
