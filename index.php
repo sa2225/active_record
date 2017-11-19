@@ -17,7 +17,7 @@ $obj=new displayHtml;
 $obj=new main();
 
 class dbConn{
-    protected static $db;
+protected static $db;
     private function __construct() {
         try {
             self::$db = new PDO( 'mysql:host=' . CONNECTION .';dbname=' . DATABASE, USERNAME, PASSWORD );
@@ -38,7 +38,6 @@ class dbConn{
         }
         return self::$db;
     }
-}
 
 // Abstract class that handles collections
 abstract class collection {
