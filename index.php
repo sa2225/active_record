@@ -41,8 +41,7 @@ protected static $db;
 
 // Abstract class that handles collections
 abstract class collection {
-
-    protected $html;
+ protected $html;
 
     // Function to create model
     static public function create() {
