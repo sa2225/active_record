@@ -119,36 +119,66 @@ class accounts extends collection {
 class todos extends collection {
     protected static $modelName = 'todo';
 }
-class model {
+
+// Abstract class for data model operations  
+abstract class model {
     protected $tableName;
-    public function save()
-    {
-        if ($this->id = '') {
-            $sql = $this->insert();
-        } else {
+
+    // Function to save record
+    public function save(){
+        if ($this->id != '') {
             $sql = $this->update();
+        } else {
+           $sql = $this->insert();
         }
         $db = dbConn::getConnection();
         $statement = $db->prepare($sql);
-        $statement->execute();
-        $tableName = get_called_class();
         $array = get_object_vars($this);
-        $columnString = implode(',', $array);
-        $valueString = ":".implode(',:', $array);
-       // echo "INSERT INTO $tableName (" . $columnString . ") VALUES (" . $valueString . ")</br>";
-        echo 'I just saved record: ' . $this->id;
+        foreach (array_flip($array) as $key=>$value){
+            $statement->bindParam(":$value", $this->$value);
+        }
+        $statement->execute();
+        $id = $db->lastInsertId();
+        return $id;
     }
-    private function insert() {
-        $sql = 'sometthing';
+
+    // Function to insert new record
+    private function insert() {      
+        $modelName=get_called_class();
+        $tableName = $modelName::getTablename();
+        $array = get_object_vars($this);
+        $columnString = implode(',', array_flip($array));
+        $valueString = ':'.implode(',:', array_flip($array));
+        $sql =  'INSERT INTO '.$tableName.' ('.$columnString.') VALUES ('.$valueString.')';
         return $sql;
     }
-    private function update() {
-        $sql = 'sometthing';
+
+    // Function to update an exisiting record
+    private function update() {  
+        $modelName=get_called_class();
+        $tableName = $modelName::getTablename();
+        $array = get_object_vars($this);
+        $comma = " ";
+        $sql = 'UPDATE '.$tableName.' SET ';
+
+        foreach ($array as $key=>$value){
+            if( ! empty($value)) {
+                $sql .= $comma . $key . ' = "'. $value .'"';
+                $comma = ", ";
+                }
+            }
+            $sql .= ' WHERE id='.$this->id;
         return $sql;
-        echo 'I just updated record' . $this->id;
     }
+
+    // Function to delete a record
     public function delete() {
-        echo 'I just deleted record' . $this->id;
+        $db = dbConn::getConnection();
+        $modelName=get_called_class();
+        $tableName = $modelName::getTablename();
+        $sql = 'DELETE FROM '.$tableName.' WHERE id ='.$this->id;
+        $statement = $db->prepare($sql);
+        $statement->execute();
     }
 }
 class account extends model {
