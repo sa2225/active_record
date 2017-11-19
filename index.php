@@ -186,8 +186,12 @@ class main{
    public function __construct(){
 
     // ************** ACCOUNTS TABLE ***************
-    // Finding all Records 
-    $form = '<h1>Operations on the Accounts table</h2>';
+    // Finding all Records
+    $form = '<html>';
+    $form .= '<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">';
+    $form .= '<link rel="stylesheet" href="styles.css">';
+    $form .= '<body>'; 
+    $form .= '<h1>Operations on the Accounts table</h2>';
     $form .= '<h2>1) Display All Records</h2>';
     $records = accounts::findAll();
     $html = displayHtml::tableDisplayFunction($records);
@@ -197,7 +201,7 @@ class main{
     $records = accounts::findOne($id);
     $html = displayHtml::tableDisplayFunction_1($records);
     $form .= '<h2> 2) Display One Record</h2>';
-    $form .="<h3>Record fetched with the following id - <i>".$id."</i></h3>";
+    $form .="<h3>Record fetched with the following id - ".$id."</h3>";
     $form .= '<center>'.$html.'</center><hr>';
     // Inserting New Record
     $form .="<h2> 3) Insert One Record</h2>";
@@ -211,7 +215,7 @@ class main{
     $record->password="cadmium@xenon.com";
     $lstId=$record->save();
     $records = accounts::findAll();
-    $form .="<h3> New record inserted with the following id - <i>".$lstId."</i></h3>";
+    $form .="<h3> New record inserted with the following id - ".$lstId."</h3>";
     $html = displayHtml::tableDisplayFunction($records);
     $form .='<h3> After record is inserted - </h3>';
     $form .='<center>'.$html.'</center><hr>';
@@ -226,7 +230,7 @@ class main{
     $record->gender="maleupdated";
     $record->save();
     $records = accounts::findAll();
-    $form .="<h3>Updating the record with the following id: <i>".$lstId."</i></h3>";
+    $form .="<h3>Updating the record with the following id: ".$lstId."</h3>";
     $html = displayHtml::tableDisplayFunction($records);
     $form .='<center>'.$html.'</center><hr>';
     // Deleting Record 
@@ -235,7 +239,7 @@ class main{
     $record= new account();
     $record->id=$records->id;
     $records->delete();
-    $form .='<h3>Record with the id: <i>'.$records->id.'</i> has been deleted</h3>';
+    $form .='<h3>Record with the id: '.$records->id.' has been deleted</h3>';
     $records = accounts::findAll();
     $html = displayHtml::tableDisplayFunction($records);
     $form .='<h3>After record has been deleteds</h3>';
@@ -254,7 +258,7 @@ class main{
     $records = todos::findOne($id);
     $html = displayHtml::tableDisplayFunction_1($records);
     $form .='<h2>2) Display one Record/h2>';
-    $form .='<h3> Record fetched with the following id: <i>'.$id.'</i></h3>';
+    $form .='<h3> Record fetched with the following id: '.$id.'</h3>';
     $form .='<center>'.$html.'</center><hr>';
     // Inserting a record
     $form .="<h2> 3) Insert new Record</h2>";
@@ -267,7 +271,7 @@ class main{
     $record->isdone=1;
     $lstId=$record->save();
     $records = todos::findAll();
-    $form .="<h3>Record inserted with the following id - <i>".$lstId."</i></h3>";
+    $form .="<h3>Record inserted with the following id - ".$lstId."</h3>";
     $html = displayHtml::tableDisplayFunction($records);
     $form .='<h3>After inserting the new record - </h3>';
     $form .='<center>'.$html.'</center><hr>';
@@ -280,7 +284,7 @@ class main{
     $record->message="New Update has been made! ";
     $record->save();
     $records = todos::findAll();
-    $form .="<h3>Updateing a record with the following id: <i>".$lstId."</i></h3>";
+    $form .="<h3>Updateing a record with the following id: ".$lstId."</h3>";
     $html = displayHtml::tableDisplayFunction($records);
     $form .='<center>'.$html.'</center><hr>';
     // Delete a record
@@ -289,12 +293,12 @@ class main{
     $record= new todo();
     $record->id=$records->id;
     $records->delete();
-    $form .='<h3>Record with the id: <i>'.$records->id.'</i> has been deleted</h3>';
+    $form .='<h3>Record with the id: '.$records->id.' has been deleted</h3>';
     $records = todos::findAll();
     $html = displayHtml::tableDisplayFunction($records);
     $form .="<h3>After Record has been deleted</h3>";
     $form .='<center>'.$html.'</center><hr>';
-    $form .='<h2><center>___________________________</center></h2><hr>';
+    $form .='</body></html>';
     print_r($form);
     }
 }
