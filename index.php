@@ -253,10 +253,10 @@ class main{
     $html = displayHtml::displayTable($records); 
     $mainHTML .='<center>'.$html.'</center><hr>';
     // Finding one record
-    $id = 6;
+    $id = 1;
     $records = todos::findOne($id);
     $html = displayHtml::displayTableAlternate($records);
-    $mainHTML .='<h2>2) Display one Record/h2>';
+    $mainHTML .='<h2>2) Display one Record</h2>';
     $mainHTML .='<h3> Record fetched with the following id: '.$id.'</h3>';
     $mainHTML .='<center>'.$html.'</center><hr>';
     // Inserting a record
@@ -283,7 +283,7 @@ class main{
     $record->message="New Update has been made! ";
     $record->save();
     $records = todos::findAll();
-    $mainHTML .="<h3>Updateing a record with the following id: ".$lstId."</h3>";
+    $mainHTML .="<h3>Updating a record with the following id: ".$lstId."</h3>";
     $html = displayHtml::displayTable($records);
     $mainHTML .='<center>'.$html.'</center><hr>';
     // Delete a record
