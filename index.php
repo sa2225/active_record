@@ -197,7 +197,7 @@ class main{
     $html = displayHtml::displayTable($records);
     $mainHTML .='<center>'.$html.'</center><hr>'; 
     // Finding single record 
-    $id = 4;
+    $id = 2;
     $records = accounts::findOne($id);
     $html = displayHtml::displayTableAlternate($records);
     $mainHTML .= '<h2> 2) Display One Record</h2>';
@@ -253,7 +253,7 @@ class main{
     $html = displayHtml::displayTable($records); 
     $mainHTML .='<center>'.$html.'</center><hr>';
     // Finding one record
-    $id = 7;
+    $id = 6;
     $records = todos::findOne($id);
     $html = displayHtml::displayTableAlternate($records);
     $mainHTML .='<h2>2) Display one Record/h2>';
