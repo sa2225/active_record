@@ -187,24 +187,24 @@ class main{
 
     // ************** ACCOUNTS TABLE ***************
     // Finding all Records
-    $form = '<html>';
-    $form .= '<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">';
-    $form .= '<link rel="stylesheet" href="styles.css">';
-    $form .= '<body>'; 
-    $form .= '<h1>Operations on the Accounts table</h2>';
-    $form .= '<h2>1) Display All Records</h2>';
+    $mainHTML = '<html>';
+    $mainHTML .= '<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">';
+    $mainHTML .= '<link rel="stylesheet" href="styles.css">';
+    $mainHTML .= '<body>'; 
+    $mainHTML .= '<h1>Operations on the Accounts table</h2>';
+    $mainHTML .= '<h2>1) Display All Records</h2>';
     $records = accounts::findAll();
     $html = displayHtml::tableDisplayFunction($records);
-    $form .='<center>'.$html.'</center><hr>'; 
+    $mainHTML .='<center>'.$html.'</center><hr>'; 
     // Finding single record 
     $id = 4;
     $records = accounts::findOne($id);
     $html = displayHtml::tableDisplayFunction_1($records);
-    $form .= '<h2> 2) Display One Record</h2>';
-    $form .="<h3>Record fetched with the following id - ".$id."</h3>";
-    $form .= '<center>'.$html.'</center><hr>';
+    $mainHTML .= '<h2> 2) Display One Record</h2>';
+    $mainHTML .="<h3>Record fetched with the following id - ".$id."</h3>";
+    $mainHTML .= '<center>'.$html.'</center><hr>';
     // Inserting New Record
-    $form .="<h2> 3) Insert One Record</h2>";
+    $mainHTML .="<h2> 3) Insert One Record</h2>";
     $record = new account();
     $record->email="newtestaccount@njit.edu";
     $record->fname="ss";
@@ -215,12 +215,12 @@ class main{
     $record->password="cadmium@xenon.com";
     $lstId=$record->save();
     $records = accounts::findAll();
-    $form .="<h3> New record inserted with the following id - ".$lstId."</h3>";
+    $mainHTML .="<h3> New record inserted with the following id - ".$lstId."</h3>";
     $html = displayHtml::tableDisplayFunction($records);
-    $form .='<h3> After record is inserted - </h3>';
-    $form .='<center>'.$html.'</center><hr>';
+    $mainHTML .='<h3> After record is inserted - </h3>';
+    $mainHTML .='<center>'.$html.'</center><hr>';
     // Updating exisiting record 
-    $form .= "<h2> 4) Updating Record</h2>";
+    $mainHTML .= "<h2> 4) Updating Record</h2>";
     $records = accounts::findOne($lstId);
     $record = new account();
     $record->id=$records->id;
@@ -230,38 +230,37 @@ class main{
     $record->gender="maleupdated";
     $record->save();
     $records = accounts::findAll();
-    $form .="<h3>Updating the record with the following id: ".$lstId."</h3>";
+    $mainHTML .="<h3>Updating the record with the following id: ".$lstId."</h3>";
     $html = displayHtml::tableDisplayFunction($records);
-    $form .='<center>'.$html.'</center><hr>';
+    $mainHTML .='<center>'.$html.'</center><hr>';
     // Deleting Record 
-    $form .= "<h2> 5) Delete a Record</h2>";
+    $mainHTML .= "<h2> 5) Delete a Record</h2>";
     $records = accounts::findOne($lstId);
     $record= new account();
     $record->id=$records->id;
     $records->delete();
-    $form .='<h3>Record with the id: '.$records->id.' has been deleted</h3>';
+    $mainHTML .='<h3>Record with the id: '.$records->id.' has been deleted</h3>';
     $records = accounts::findAll();
     $html = displayHtml::tableDisplayFunction($records);
-    $form .='<h3>After record has been deleteds</h3>';
-    $form .='<center>'.$html.'</center><br><hr>';
-    $form .='<h2><center>___________________________</center></h2><hr>';
+    $mainHTML .='<h3>After record has been deleteds</h3>';
+    $mainHTML .='<center>'.$html.'</center><br><hr>';
 
     // ************** TODOS TABLE ***************
     // Finding all records 
-    $form .= '<h1> Operations on the Todos Table</h1>';
-    $form .= '<h2> 1) Display All Records</h2>';
+    $mainHTML .= '<h1> Operations on the Todos Table</h1>';
+    $mainHTML .= '<h2> 1) Display All Records</h2>';
     $records = todos::findAll();
     $html = displayHtml::tableDisplayFunction($records); 
-    $form .='<center>'.$html.'</center><hr>';
+    $mainHTML .='<center>'.$html.'</center><hr>';
     // Finding one record
     $id = 7;
     $records = todos::findOne($id);
     $html = displayHtml::tableDisplayFunction_1($records);
-    $form .='<h2>2) Display one Record/h2>';
-    $form .='<h3> Record fetched with the following id: '.$id.'</h3>';
-    $form .='<center>'.$html.'</center><hr>';
+    $mainHTML .='<h2>2) Display one Record/h2>';
+    $mainHTML .='<h3> Record fetched with the following id: '.$id.'</h3>';
+    $mainHTML .='<center>'.$html.'</center><hr>';
     // Inserting a record
-    $form .="<h2> 3) Insert new Record</h2>";
+    $mainHTML .="<h2> 3) Insert new Record</h2>";
     $record = new todo();
     $record->owneremail="ss2225@njit.edu";
     $record->ownerid=06;
@@ -271,12 +270,12 @@ class main{
     $record->isdone=1;
     $lstId=$record->save();
     $records = todos::findAll();
-    $form .="<h3>Record inserted with the following id - ".$lstId."</h3>";
+    $mainHTML .="<h3>Record inserted with the following id - ".$lstId."</h3>";
     $html = displayHtml::tableDisplayFunction($records);
-    $form .='<h3>After inserting the new record - </h3>';
-    $form .='<center>'.$html.'</center><hr>';
+    $mainHTML .='<h3>After inserting the new record - </h3>';
+    $mainHTML .='<center>'.$html.'</center><hr>';
     // Updating a record
-    $form .="<h2> 4) Update exisiting Record</h2>";
+    $mainHTML .="<h2> 4) Update exisiting Record</h2>";
     $records = todos::findOne($lstId);
     $record = new todo();
     $record->id=$records->id;
@@ -284,21 +283,21 @@ class main{
     $record->message="New Update has been made! ";
     $record->save();
     $records = todos::findAll();
-    $form .="<h3>Updateing a record with the following id: ".$lstId."</h3>";
+    $mainHTML .="<h3>Updateing a record with the following id: ".$lstId."</h3>";
     $html = displayHtml::tableDisplayFunction($records);
-    $form .='<center>'.$html.'</center><hr>';
+    $mainHTML .='<center>'.$html.'</center><hr>';
     // Delete a record
-    $form .= "<h2> 5) Delete an exisiting Record</h2>";
+    $mainHTML .= "<h2> 5) Delete an exisiting Record</h2>";
     $records = todos::findOne($lstId);
     $record= new todo();
     $record->id=$records->id;
     $records->delete();
-    $form .='<h3>Record with the id: '.$records->id.' has been deleted</h3>';
+    $mainHTML .='<h3>Record with the id: '.$records->id.' has been deleted</h3>';
     $records = todos::findAll();
     $html = displayHtml::tableDisplayFunction($records);
-    $form .="<h3>After Record has been deleted</h3>";
-    $form .='<center>'.$html.'</center><hr>';
-    $form .='</body></html>';
-    print_r($form);
+    $mainHTML .="<h3>After Record has been deleted</h3>";
+    $mainHTML .='<center>'.$html.'</center><hr>';
+    $mainHTML .='</body></html>';
+    print_r($mainHTML);
     }
 }
