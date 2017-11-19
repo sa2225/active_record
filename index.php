@@ -199,7 +199,7 @@ class main{
     // Finding single record 
     $id = 4;
     $records = accounts::findOne($id);
-    $html = displayHtml::displayAlternateTable($records);
+    $html = displayHtml::displayTableAlternate($records);
     $mainHTML .= '<h2> 2) Display One Record</h2>';
     $mainHTML .="<h3>Record fetched with the following id - ".$id."</h3>";
     $mainHTML .= '<center>'.$html.'</center><hr>';
@@ -216,7 +216,7 @@ class main{
     $lstId=$record->save();
     $records = accounts::findAll();
     $mainHTML .="<h3> New record inserted with the following id - ".$lstId."</h3>";
-    $html = displayHtml::tableDisplayFunction($records);
+    $html = displayHtml::displayTable($records);
     $mainHTML .='<h3> After record is inserted - </h3>';
     $mainHTML .='<center>'.$html.'</center><hr>';
     // Updating exisiting record 
@@ -255,7 +255,7 @@ class main{
     // Finding one record
     $id = 7;
     $records = todos::findOne($id);
-    $html = displayHtml::displayAlternateTable($records);
+    $html = displayHtml::displayTableAlternate($records);
     $mainHTML .='<h2>2) Display one Record/h2>';
     $mainHTML .='<h3> Record fetched with the following id: '.$id.'</h3>';
     $mainHTML .='<center>'.$html.'</center><hr>';
